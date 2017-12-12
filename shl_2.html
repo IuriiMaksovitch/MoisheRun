@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+			var speed = parseInt(prompt('ведите скорость', 5));
+
+			var Shlemazl = function(x, y) {
+				this.x = x;
+				this.y = y;
+				this.draw();
+			};
+
+			Shlemazl.prototype.draw = function() {
+				var shlemazlHtml = '<img src ="shlemazl.png">'
+
+				this.shlemazlElement = $(shlemazlHtml);
+
+				this.shlemazlElement.css({
+					position: 'absolute',
+					left: this.x,
+					top: this.y
+				});
+
+				$('body').append(this.shlemazlElement);
+			};
+
+			Shlemazl.prototype.moveRight = function() {
+				this.x += speed;
+
+				this.shlemazlElement.css({
+					left: this.x,
+					top: this.y
+				});
+			};
+
+			Shlemazl.prototype.moveLeft = function() {
+				this.x -= speed;
+
+				this.shlemazlElement.css({
+					left: this.x,
+					top: this.y
+				});
+			};
+
+			Shlemazl.prototype.moveUp = function() {
+				this.y -= speed;
+
+				this.shlemazlElement.css({
+					left: this.x,
+					top: this.y
+				});
+			};
+
+			Shlemazl.prototype.moveDown = function() {
+				this.y += speed;
+
+				this.shlemazlElement.css({
+					left: this.x,
+					top: this.y
+				});
+			};
+
+			var Shmulik = new Shlemazl(10, 20);
+/*			var Izik = new Shlemazl(800, 400);
+			var Herman = new Shlemazl(400, 250);*/
+			// Shmulik.draw();
+			// Izik.draw();
+
+		var keyNames = {
+			32: 'space',
+			37: 'left',
+			38: 'up',
+			39: 'right',
+			40: 'down'
+		};
+
+		$('body').keydown(function (event) {
+			// console.log(keyNames[event.keyCode]);
+			switch(event.keyCode){
+				case 37:
+					Shmulik.moveLeft();					
+					break;
+				case 38:
+					Shmulik.moveUp();
+					break;
+				case 39:
+					Shmulik.moveRight();
+					break;
+				case 40:
+					Shmulik.moveDown();
+					break;
+				default:
+					alert('Управлять шмуликом можно только стрелочками.')	
+			}
+		});
+
+				/*$('body').keydown(function (event) {
+			console.log(keyNames[event.keyCode]);
+			switch(keyNames[event.keyCode]){
+				case 'left':
+					Shmulik.moveLeft();					
+					break;
+				case 'up':
+					Shmulik.moveUp();
+					break;
+				case 'right':
+					Shmulik.moveRight();
+					break;
+				case 'down':
+					Shmulik.moveDown();
+					break;
+				default:
+					alert('Управлять шмуликом можно только стрелочками.')	
+			}
+		});*/
+
+
+
+
+		</script>
+		
+	</body>
+</html>
